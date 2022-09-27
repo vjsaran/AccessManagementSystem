@@ -1,6 +1,14 @@
 <div id="search-component">
   <input type="text" id="search-Box" #folderPath/>
   <button (click) ="search(folderPath.value)" class="search-button">Search</button> 
+  <div *ngIf="message!">
+    <label>{{message}}</label>
+  </div>
+  <div *ngIf="error!">
+      <label>{{error}}</label>
+  </div>
+</div>
+
 <div class="container" *ngIf="accessRequests$">
   <div class="row">
     <div class="col-12">
@@ -10,7 +18,7 @@
             <th scope="col">Request Id</th>
             <th scope="col">Email</th>
             <th scope="col">folderPath</th>
-            <th scope="col">Actions</th>
+            <th scope="col">Actions</th>            
           </tr>
         </thead>
         <tbody>
@@ -27,5 +35,4 @@
       </table>
     </div>
   </div>
-</div>
 </div>

@@ -11,7 +11,8 @@ import {RequestService} from "../request-search.service";
 })
 export class RequestSearchComponent implements OnInit {
   accessRequests$!: Observable<AccessRequest[]>;
-  
+  message!: string;
+  error!: string;
   
 
   constructor(private requestService: RequestService) {}
@@ -25,14 +26,33 @@ export class RequestSearchComponent implements OnInit {
   approve(request: AccessRequest): void{
     
     request.state = 'Approved';
-    this.requestService.approveOrReject(request).subscribe(req => {console.log(req);
-    });
+    this.requestService.approveOrReject(request).subscribe(req => {
+      if (req != null) {
+      this.error = '';
+      this.message = `You request number ${req.id} has been successfully approved`;
+    
+    }
+    else{
+      this.message = '';
+      this.error =`There was an error while processing your request`;
+    }
+  });
   }
 
 
   reject(request: AccessRequest): void{
     request.state = 'Rejected';
-    this.requestService.approveOrReject(request).subscribe(req => {console.log(req)});
+    this.requestService.approveOrReject(request).subscribe(req => {
+      if (req != null) {
+      this.error = '';
+      this.message = `You request number ${req.id} has been rejected`;
+    
+    }
+    else{
+      this.message = '';
+      this.error =`There was an error while processing your request`;
+    }
+  });
   }
 
   ngOnInit(): void {
