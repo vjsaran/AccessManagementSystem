@@ -25,8 +25,7 @@ export class RequestSearchComponent implements OnInit {
   approve(request: AccessRequest): void{
     
     request.state = 'Approved';
-    this.requestService.approveOrReject(request)
-    .subscribe(req => {console.log(req);
+    this.requestService.approveOrReject(request).subscribe(req => {console.log(req);
     });
   }
 

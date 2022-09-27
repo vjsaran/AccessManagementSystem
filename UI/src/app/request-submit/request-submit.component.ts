@@ -11,6 +11,8 @@ import {RequestService} from "../request-search.service";
 })
 export class RequestSubmitComponent implements OnInit {
   accessRequests: AccessRequest[] = [];
+  message!: string;
+  error!: string;
 
   constructor(private requestService: RequestService) { }
   
@@ -21,8 +23,16 @@ export class RequestSubmitComponent implements OnInit {
     path = path.trim();
     if (!path) { return; }
     this.requestService.submitAccessRequest({emailId : emailId, path: path } as AccessRequest)
-      .subscribe(request => {
-        this.accessRequests.push(request);
+      .subscribe(req => {
+        if (req != null) {
+          this.error = '';
+          this.message = `Submitted a new access request. You request number is ${req.id}`;
+        this.accessRequests.push(req);
+        }
+        else{
+          this.message = '';
+          this.error =`There was an error submitting your request`;
+        }
       });
   }
 
