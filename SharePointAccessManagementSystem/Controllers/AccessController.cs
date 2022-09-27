@@ -84,7 +84,7 @@ namespace SharePointAccessManagementSystem.Controllers
         }
 
         [HttpPut]
-        [Route("id")]
+       
         public  ActionResult<AccessRequest> UpdateAccessRequest(int id, [FromBody] AccessRequestUpdateDto accessRequestDto)
         {
             if (accessRequestDto == null)
@@ -101,7 +101,7 @@ namespace SharePointAccessManagementSystem.Controllers
             _mapper.Map(accessRequestDto,existingRequest);
             _accessRequestRepo.Update(id, existingRequest);
             
-            return Ok();
+            return Ok(existingRequest);
         }
 
     }
