@@ -45,7 +45,7 @@ export class RequestService {
          
         return this.http.put<any>(`${this.accessRequestUrl}?id=${accessRequest.id}`,{state: accessRequest.state} )
        .pipe(
-           tap((newRequest: any)=> this.log(`Processed Access Request =${accessRequest.id}`)),
+           tap((newRequest: AccessRequest)=> this.log(`Processed Access Request =${newRequest.id}`)),
            catchError(this.handleError<any>('approveOrReject'))
         );
       }

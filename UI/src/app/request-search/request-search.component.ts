@@ -25,15 +25,15 @@ export class RequestSearchComponent implements OnInit {
   approve(request: AccessRequest): void{
     
     request.state = 'Approved';
-this.requestService.approveOrReject(request)
-.subscribe(request => {console.log(request);
-});
+    this.requestService.approveOrReject(request)
+    .subscribe(req => {console.log(req);
+    });
   }
 
 
   reject(request: AccessRequest): void{
     request.state = 'Rejected';
-    this.requestService.approveOrReject(request).subscribe(request => {console.log(request)});
+    this.requestService.approveOrReject(request).subscribe(req => {console.log(req)});
   }
 
   ngOnInit(): void {
