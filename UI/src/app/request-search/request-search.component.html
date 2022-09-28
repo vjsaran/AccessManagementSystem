@@ -1,0 +1,38 @@
+<div id="search-component">
+  <input type="text" id="search-Box" #folderPath/>
+  <button (click) ="search(folderPath.value)" class="search-button">Search</button> 
+  <div *ngIf="message!">
+    <label>{{message}}</label>
+  </div>
+  <div *ngIf="error!">
+      <label>{{error}}</label>
+  </div>
+</div>
+
+<div class="container" *ngIf="accessRequests$">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Request Id</th>
+            <th scope="col">Email</th>
+            <th scope="col">folderPath</th>
+            <th scope="col">Actions</th>            
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of accessRequests$ | async">
+            <td> {{request.id}}</td>
+            <td> {{request.emailId}}</td>
+            <td> {{request.path}}</td>            
+            <td>
+              <button type="button" class="btn btn-primary" (click)="approve(request)">Approve</button>
+              <button type="button" class="btn btn-success" (click)="reject(request)">Reject</button>
+            </td>
+          </tr>          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

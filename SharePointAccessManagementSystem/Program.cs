@@ -2,8 +2,20 @@ using Microsoft.EntityFrameworkCore;
 using SharePointAccessManagementSystem.Mapping;
 using SharePointAccessManagementSystem.Repositories;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+                      policy =>
+                      {
+                          policy.WithOrigins("*")
+                          .AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                      });
+});
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -25,7 +37,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();

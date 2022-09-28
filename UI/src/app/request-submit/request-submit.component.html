@@ -1,0 +1,16 @@
+
+<div id="submit-component">
+    <div>Email Id</div>
+    <input type="email" #emailId id="emailBox"/>
+    <div>Access Needed for: </div>
+    <input type="text" #folderPath id="folderPath" />
+    <div>
+    <button (click)="add(emailId.value,folderPath.value)" class="submit-button">Submit Request</button>
+</div>
+<div *ngIf="message!">
+<label color = 'green'>{{message}}</label>
+</div>
+<div *ngIf="error!">
+    <label color = 'red'>{{error}}</label>
+    </div>
+</div>
