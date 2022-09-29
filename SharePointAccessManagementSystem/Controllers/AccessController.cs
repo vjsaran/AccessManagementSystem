@@ -83,7 +83,7 @@ namespace SharePointAccessManagementSystem.Controllers
 
         }
 
-        [HttpPut]
+        [HttpPatch]
        
         public  ActionResult<AccessRequest> UpdateAccessRequest(int id, [FromBody] AccessRequestUpdateDto accessRequestDto)
         {

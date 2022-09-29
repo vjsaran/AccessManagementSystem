@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
 
 import {AccessRequest} from '../access-request';
 import {RequestService} from "../request-search.service";
@@ -13,8 +12,8 @@ export class RequestSubmitComponent implements OnInit {
   accessRequests: AccessRequest[] = [];
   message!: string;
   error!: string;
-
-  constructor(private requestService: RequestService) { }
+  
+  constructor(private requestService: RequestService) {}
   
   add(emailId: string, path: string): void {
 

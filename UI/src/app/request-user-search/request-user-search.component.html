@@ -1,0 +1,32 @@
+<div id="search-component">
+    <label>Enter email id</label>
+    <input type="text" id="search-Box" #emailId/>
+    <button (click) ="search(emailId.value)" class="search-button">Search</button> 
+    <div *ngIf="message!">
+      <label>{{message}}</label>
+    </div>
+    <div *ngIf="error!">
+        <label>{{error}}</label>
+    </div>
+  </div>
+  <div class="container" *ngIf="userAccesses$">
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Request Id</th>              
+              <th scope="col">folderPath</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let request of userAccesses$ | async">
+              <td> {{request.id}}</td>
+              <td> {{request.path}}</td>            
+            </tr>          
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
