@@ -1,15 +1,17 @@
 <div id="search-component">
+  <br>
+  <label>Enter folder path</label>
   <input type="text" id="search-Box" #folderPath/>
   <button (click) ="search(folderPath.value)" class="search-button">Search</button> 
-  <div *ngIf="message!">
+  <div  class="success" *ngIf="message">
     <label>{{message}}</label>
   </div>
-  <div *ngIf="error!">
+  <div  class="error" *ngIf="error">
       <label>{{error}}</label>
   </div>
 </div>
-
-<div class="container" *ngIf="accessRequests$">
+<br>
+<div *ngIf="accessRequests$">
   <div class="row">
     <div class="col-12">
       <table class="table table-bordered">
@@ -22,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let request of accessRequests$ | async">
+          <tr *ngFor="let request of accessRequests$| async">
             <td> {{request.id}}</td>
             <td> {{request.emailId}}</td>
             <td> {{request.path}}</td>            

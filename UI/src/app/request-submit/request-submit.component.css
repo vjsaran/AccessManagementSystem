@@ -1,0 +1,12 @@
+  .success label {
+    float: left;
+    font-size: 16px;
+    color: rgb(107, 202, 29);
+    font-weight: 500;
+  }
+  .error label {
+    float: left;
+    font-size: 16px;
+    color: rgb(233, 12, 12);
+    font-weight: 500;
+  }

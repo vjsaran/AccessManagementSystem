@@ -3,11 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { RequestSearchComponent } from './request-search/request-search.component';
 import { RequestSubmitComponent } from './request-submit/request-submit.component';
+import { RequestUserSearchComponent } from './request-user-search/request-user-search.component';
+import { RequestHomeComponent } from './request-home/request-home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/pendingRequests', pathMatch: 'full' },
-  { path: 'pendingRequests', component: RequestSearchComponent },
-  { path: 'submitRequest', component: RequestSubmitComponent }
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: RequestHomeComponent, data:{title:'Home'}},
+  { path: 'pendingRequests', component: RequestSearchComponent, data:{title:'Approval Page'} },
+  { path: 'submitRequest', component: RequestSubmitComponent, data:{title:'Access Request'}},
+  { path: 'userAccess', component: RequestUserSearchComponent , data:{title:'User Access Page'}}
 ];
 
 @NgModule({

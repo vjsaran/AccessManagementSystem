@@ -33,6 +33,17 @@ export class RequestService {
         );
       }
 
+      getUserAccesses(emailId: string): Observable<AccessRequest[]> {
+        if (!emailId.trim()) {          
+          return of([]);
+        }
+        return this.http.get<AccessRequest[]>(`${this.accessRequestUrl}/userAccess?emailId=${emailId}`).pipe(
+          tap(x => x.length ?
+             this.log(`found requests for the folder "${emailId}"`) :
+             this.log(`no requests for the folder "${emailId}"`)),
+          catchError(this.handleError<AccessRequest[]>('getUserAccesses', []))
+        );
+      }
 
       submitAccessRequest(accessRequest : AccessRequest): Observable<AccessRequest> {
           return this.http.post<AccessRequest>(`${this.accessRequestUrl}`,accessRequest).pipe(
@@ -43,7 +54,7 @@ export class RequestService {
 
       approveOrReject(accessRequest : AccessRequest): Observable<AccessRequest> {
          
-        return this.http.put<any>(`${this.accessRequestUrl}?id=${accessRequest.id}`,{state: accessRequest.state} )
+        return this.http.patch<any>(`${this.accessRequestUrl}?id=${accessRequest.id}`,{state: accessRequest.state} )
        .pipe(
            tap((newRequest: AccessRequest)=> this.log(`Processed Access Request =${newRequest.id}`)),
            catchError(this.handleError<any>('approveOrReject'))

@@ -7,10 +7,10 @@
     <div>
     <button (click)="add(emailId.value,folderPath.value)" class="submit-button">Submit Request</button>
 </div>
-<div *ngIf="message!">
-<label color = 'green'>{{message}}</label>
+<div class="success" *ngIf="message!">
+<label >{{message}}</label>
 </div>
-<div *ngIf="error!">
-    <label color = 'red'>{{error}}</label>
+<div class="error" *ngIf="error!">
+    <label >{{error}}</label>
     </div>
 </div>
